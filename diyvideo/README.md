@@ -10,6 +10,8 @@
 2.视频图片</br>
 3.全屏时拖动浏览器导致宽度变化时的bug</br>
 4.画质更改</br>
+5.绝对分离</br>
+6.图片整合成精灵图</br>
 
 # 工作重点:
 注重实用video标签的API和特有属性，并且修改video的shadow DOM，让原本的视频控制不显示，可以在浏览器的设置里面勾选show user agent shadow DOM查看video标签下的控件的组成和样式。
