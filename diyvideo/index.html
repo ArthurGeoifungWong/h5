@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0;padding: 0;font-family: "微软雅黑";}
+			#box{
+				width: 500px;
+				margin: 50px auto;
+			}
+			#content{
+				position: relative;
+				width: 500px;
+				height: 400px;
+			}
+			
+			#videotitle{
+				width: 100%;
+				height: 30px;
+				text-align: center;
+				box-shadow: 2px 2px 0 4px rgba(0,0,0,0.5) inset,
+							-2px -2px 0 4px rgba(0,0,0,0.5) inset;
+				border-radius: 6px 6px 0px 0px;			
+			}
+			
+			#videocontent{
+				width: 100%;
+				height: 330px;
+				background: black;
+			}
+			#media{
+				/*width: 500px;
+				height: 400px;
+				position: absolute;*/
+				width: 100%;
+				height: 330px;
+			}
+			
+			#switch{
+				width: 80px;
+				height: 80px;
+				background: transparent;
+				border: 1px solid green;
+				border-radius: 50%;
+				position: absolute;
+				top: 0;
+    			left: 0;
+    			right: 0;
+    			bottom: 0;
+    			margin: auto;
+    			cursor: pointer;
+    			z-index: 2147483650;
+			}
+			#switch span:nth-of-type(1){
+				display: inline-block;
+				width: 0px;
+				height: 0px;
+				border: 24px solid transparent;
+				border-left: 28px solid green;
+				margin-left: 30px;
+				margin-top: 16px;
+			}
+			#switch span:nth-of-type(2){
+				/*display: inline-block;*/
+				display: none;
+				width: 20px;
+				height: 40px;
+				border-left: 4px solid green;
+				border-right: 4px solid green;
+				border-radius: 2px;
+				margin-left: 28px;
+				margin-top: 20px;
+			}
+			
+
+			video::-webkit-media-controls{
+				display:none !important;
+			}
+			
+			#control{
+				width: 100%;
+				height: 40px;
+				background: white;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				z-index: 2147483650;
+				border-radius: 0 0 10px 10px;
+				box-shadow: 2px 2px 0 2px blueviolet inset,
+							-2px -2px 0 2px blueviolet inset;
+
+			}
+			#fresh{
+				width: 20px;
+				height: 20px;
+				cursor: pointer;
+				/*position: absolute;
+				left: 12px;
+				bottom: 10px;*/
+				float: left;
+				margin-left: 12px;
+    			margin-top: 10px;
+			}
+			#pro{
+				width: 274px;
+			    height: 8px;
+			    /*position: absolute;
+			    left: 40px;
+			    bottom: 14px;*/
+    			border: 1px solid black;
+    			border-radius: 10px 10px 10px 10px;
+    			float: left;
+    			margin-left: 10px;
+    			margin-top: 15px;
+			}
+			#line{
+				width: 0px;
+			   	height: 100%;
+			   	background: burlywood;
+			}
+			#time{
+				/*position: absolute;
+				left: 330px;
+    			bottom: 10px;*/
+    			float: left;
+    			margin-left: 10px;
+    			margin-top: 9px;
+			}
+			#sound{
+				/*position: absolute;
+				left: 428px;
+    			bottom: 10px;*/
+    			width: 20px;
+				height: 20px;
+				cursor: pointer;
+				float: left;
+			    margin-left: 10px;
+			    margin-top: 10px;
+			}
+			#full{
+				width: 20px;
+				height: 20px;
+				cursor: pointer;
+				/*position: absolute;
+				right: 16px;
+				bottom: 10px;*/
+				float: left;
+			    margin-top: 10px;
+			    margin-left: 18px;
+			}
+			
+			#sbox{
+				    background: black;
+				    width: 30px;
+				    height: 100px;
+				    position: absolute;
+				    border: 1px solid orangered;
+				    border-radius: 8px;
+				    left: 420px;
+				    top: -98px;
+				    display: none;
+			}
+			#spro{
+				width: 4px;
+			    height: 90px;
+			    border: 1px solid blueviolet;
+			    border-radius: 2px;
+			    margin-left: 12px;
+			    margin-top: 4px;
+			    transform: rotate(180deg);
+			}
+			#sline{
+				background: yellowgreen;
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">	
+			<div id="content">
+				<!--标题-->
+				<div id="videotitle">vedio title</div>
+				<!--视频-->
+				<div id="videocontent">
+					<video id="media" src="media/『真・三國無双７』 勢力別プロモーションムービー・呉 .mp4" ></video>
+					<!--暂停大图标-->
+					<div id="switch">
+						<span></span>
+						<!--<span></span>-->
+					</div>
+				</div>
+				<!--控制器-->
+				<div id="control">
+					<!--暂停、播放-->
+					<img src="img/start.png" alt="" id="fresh"/>
+					<!--进度条、跳跃-->
+					<div id="pro">
+						<div id="line"></div>
+					</div>
+					<!--时间：当前进度/总长度-->
+					<p id="time">
+						<span>00:00</span><span>/</span><span>00:00</span>
+					</p>
+					<!--音量控制-->
+					<img src="img/sound1.png" alt="" id="sound"/>
+					<div id="sbox">
+						<div id="spro">
+							<div id="sline"></div>
+						</div>
+					</div>
+					<!--全屏的切换-->
+					<img src="img/quanping.png" alt="" id="full"/>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var media=document.getElementById("media");
+			var switchbtn=document.getElementById("switch");
+			var con=document.getElementById("control");
+			var sbs=switchbtn.getElementsByTagName("span");
+			var fresh=document.getElementById("fresh");
+			var time=document.getElementById("time");
+			var s1=time.getElementsByTagName("span")[0];
+			var s2=time.getElementsByTagName("span")[2];
+			var full=document.getElementById("full");
+			var pro=document.getElementById("pro");
+			var line=document.getElementById("line");
+			var sbox=document.getElementById("sbox");
+			var spro=document.getElementById("spro");
+			var sline=document.getElementById("sline");
+			var flag=0;
+			var screen=0;
+			var v=0;
+			var pen;
+			pen=pro.clientWidth/con.clientWidth;
+				
+			//视频加载	
+			media.onload=function(){
+				s2.innerText=this.duration;
+				alert()
+			}
+			
+			//播放进度
+			media.ontimeupdate=function(){
+				var s2m=Math.floor(this.duration/60);
+//				var s2s=Math.ceil((this.duration-s2m*60)%60);
+				var s2s=Math.floor((this.duration-s2m*60)%60);
+				s2m=s2m<10?"0"+s2m:s2m;
+				s2s=s2s<10?"0"+s2s:s2s;
+				s2.innerText=s2m+":"+s2s;
+				
+				var s1m=Math.floor(this.currentTime/60);
+				var s1s=Math.floor((this.currentTime-s1m*60)%60);
+				s1m=s1m<10?"0"+s1m:s1m;
+				s1s=s1s<10?"0"+s1s:s1s;
+				s1.innerText=s1m+":"+s1s;
+				
+				var moving=this.currentTime/this.duration*pro.clientWidth;
+				line.style.width=moving+"px";
+				
+			}
+			
+			//跳跃播放
+			pro.onmousedown=function(event){
+					var event=event||window.event;
+					var x=event.offsetX;
+//					alert(x)
+					var clickpro=x/pro.clientWidth;
+//					alert(clickpro)
+//					line.style.width=x+"px";
+					media.currentTime=media.duration*clickpro;
+//					alert(media.duration*clickpro)
+					
+					pro.onmousemove=function(event){
+						var event=event||window.event;
+						var x=event.offsetX;
+						var clickpro=x/pro.clientWidth;
+						media.currentTime=media.duration*clickpro;
+						
+						event.preventDefault();
+						event.stopPropagation();
+						return false;
+					}
+			}
+			
+			//取消相关默认事件
+			document.onmouseup=function(){
+				pro.onmousemove=null;
+			}
+			con.onmousemove=function(event){
+				var event=event||window.event;
+				event.preventDefault();
+				return false;
+			}
+			fresh.onmousemove=function(event){
+				var event=event||window.event;
+				event.preventDefault();
+				return false;
+			}
+			
+			//播放、暂停
+			media.onclick=function(){
+				startorstop();
+			}
+			
+			switchbtn.onclick=function(){
+				startorstop();
+			}
+			
+			fresh.onclick=function(){
+				startorstop();
+			}
+			
+			function startorstop(){
+				if(flag==1){
+					media.pause();	
+					switchbtn.style.display="block";
+					flag=0;
+					fresh.src="img/start.png";
+				}
+				else{
+					media.play();	
+					setTimeout(function(){
+						switchbtn.style.display="none";
+					},50);
+					flag=1;
+					fresh.src="img/stop.png";
+				}
+			}
+			
+			//全屏事件
+			full.onclick=function(){
+				var i=fullscreen();
+				if(i===undefined){
+					if (media.requestFullscreen) {
+	    				media.requestFullscreen();
+					} else if (media.webkitRequestFullscreen) {
+	    				media.webkitRequestFullscreen();
+					} else if (media.mozRequestFullScreen) {
+	    				media.mozRequestFullScreen();
+					} else if (media.msRequestFullscreen) {
+	    				media.msRequestFullscreen();
+					}
+					full.src="img/suoping.png";
+					prolength();
+				}
+				else{
+					if (document.exitFullscreen) {
+					    document.exitFullscreen();
+					} else if (document.webkitExitFullscreen) {
+					    document.webkitExitFullscreen();
+					} else if (document.mozCancelFullScreen) {
+					    document.mozCancelFullScreen();
+					} else if (document.msExitFullscreen) {
+					    document.msExitFullscreen();
+					}
+					full.src="img/quanping.png";
+					pro.style.width="274px";
+					sbox.style.left="420px";
+				}
+//				sbox.style.left=sound.offsetLeft-8+"px";
+			}
+			
+			//判断是否全屏
+			function fullscreen(){
+				return document.fullscreenElement ||
+			        document.webkitFullscreenElement ||
+			        document.mozFullScreenElement || 
+			        document.msFullscreenElement;
+			}
+			
+			//进度条的改变，实时监测
+			function prolength(){
+				var t=setInterval(function(){
+//					alert(1)
+//					console.log(1)
+					if(con.clientWidth!=500){
+				var l=con.clientWidth-12-fresh.offsetWidth-10-10-time.offsetWidth-10-sound.offsetWidth-18-full.offsetWidth-11;
+					pro.style.width=l+"px";
+					sbox.style.left=sound.offsetLeft-8+"px";
+					clearInterval(t);	
+					}
+				});
+			}
+			
+			
+			//键盘事件
+			document.onkeyup=function(event){
+				var event=event||window.event;
+//				空格键暂停和播放
+				if(event.keyCode==32){
+					if(flag==1){
+						media.pause();	
+						switchbtn.style.display="block";
+						flag=0;
+						fresh.src="img/start.png";
+					}
+					else{
+						media.play();	
+						setTimeout(function(){
+							switchbtn.style.display="none";
+						},50);
+						flag=1;
+						fresh.src="img/stop.png";
+					}
+				}
+//				esc键退出全屏的处理
+				else if(event.keyCode==27){
+					var i=fullscreen();
+					if(i==undefined){
+						full.src="img/quanping.png";
+						pro.style.width="274px";
+						sbox.style.left="420px";
+					}
+				}
+//				alert(event.keyCode);
+			}
+			
+			
+			//视频播放结束事件、重置
+			media.onended=function(){
+				media.currentTime=0;
+				line.style.width="0px";
+				switchbtn.style.display="block";
+				fresh.src="img/start.png";
+			}
+			
+//			控制音量
+			sound.onclick=function(){
+				if(v==0){
+//					media.volume=1;
+//					sound.src="img/sound1.png";
+					sbox.style.display="block";
+					v=1;
+			
+				}
+				else{
+//					media.volume=0;
+//					sound.src="img/sound4.png";
+					sbox.style.display="none";
+					v=0;
+				}
+				
+			}
+			
+			spro.onmousedown=function(event){
+				var event=event||window.event;
+				var y=event.offsetY;
+				soundimg(y);
+				var sproclick=y/spro.clientHeight;
+				media.volume=sproclick;
+				sline.style.height=y+"px";
+				spro.onmousemove=function(event){
+					var event=event||window.event;
+					var y=event.offsetY;
+					soundimg(y);
+					var sproclick=y/spro.clientHeight;
+					if(sproclick<0){
+						sproclick=0;
+					}
+					else if(sproclick>1){
+						sproclick=1;
+					}
+					media.volume=sproclick;
+					sline.style.height=y+"px";
+					
+					event.preventDefault();
+					return false;
+				}
+			}
+			spro.onmouseup=function(){
+				spro.onmousemove=null;
+			}
+			function soundimg(y){
+				if(y<25){
+					sound.src="img/sound4.png";
+				}
+				else if(y>=25&&y<50){
+					sound.src="img/sound3.png";
+				}
+				else if(y>=50&&y<75){
+					sound.src="img/sound2.png";
+				}
+				else{
+					sound.src="img/sound1.png";
+				}
+			}
+		</script>
+	</body>
+</html>
